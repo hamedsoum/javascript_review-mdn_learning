@@ -20,6 +20,7 @@ function addTask(event){
     deleteButton.setAttribute('class', 'fa fa-pen')
     itemsContent.appendChild(itemDiv);
     event.preventDefault();
+    
 }
 
 function getTaskName(event){
