@@ -1,4 +1,4 @@
-itemsTab = [];
+itemsTab = ['task1', 'task2', 'task3', 'task4'];
 
 const itemsContent = document.querySelector('.items'); 
 
@@ -6,23 +6,44 @@ const itemsContent = document.querySelector('.items');
 let taskValue = '';
 
 
-itemsTab.forEach(el => {
-    const itemDiv = document.createElement('div');
-    itemDiv.textContent = el;
-    itemsContent.appendChild(itemDiv);
-});
+// itemsTab.forEach((el, i) => {
+//     const itemDiv = document.createElement('div');
+//     itemDiv.setAttribute('class', 'item')
+//     itemDiv.innerHTML = `<span>${el}</span> <i class="fa fa-trash" onClick='deleteTask(${i})' aria-hidden="true"></i>  <i class="fa fa-pen" onClick='updateTask(${i})' aria-hidden="true"></i>`;
+//     // const deleteButton = document.createElement('i');
+//     // deleteButton.setAttribute('class', 'fa fa-pen')
+//     itemsContent.appendChild(itemDiv);
+// });
 
 function addTask(event){
-    console.log(taskValue);
     const itemDiv = document.createElement('div');
     itemDiv.setAttribute('class', 'item')
-    const deleteButton = document.createElement('i');
-    deleteButton.setAttribute('class', 'fa fa-pen')
+        itemDiv.setAttribute('class', 'item')
+
+    itemDiv.innerHTML = `<span>${taskValue}</span> <i class="fa fa-trash" aria-hidden="true"></i>  <i class="fa fa-pen" onClick='updateTask(${taskValue})' aria-hidden="true"></i>`;
+    // const deleteButton = document.createElement('i');
+    // deleteButton.setAttribute('class', 'fa fa-pen')
     itemsContent.appendChild(itemDiv);
+    console.log(taskValue);
+    itemsTab.push(taskValue);
+    deleteBtn = itemDiv.children[1];
+    console.log(deleteBtn.setAttribute);
     event.preventDefault();
-    
+    deleteBtn.addEventListener('click', function(event) {
+        itemDiv.remove();
+    })
 }
 
 function getTaskName(event){
     taskValue = event.target.value;
 }
+
+function updateTask(el){
+    taskValue = el;
+
+}
+
+// function deleteTask(event){
+//   var x = document.getElementsByTagName("i")[0].parentElement;
+//   x.remove();
+// }
